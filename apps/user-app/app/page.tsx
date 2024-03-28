@@ -1,12 +1,12 @@
-"use client";
-// import {PrismaClient} from "@repo/db/client"
-// import { useBalance } from "@repo/store/useBalance";
+"use client"
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Appbar } from "@repo/ui/appbar";
 
-// const client = new PrismaClient();
-
-export default function() {
-  // const balance = useBalance();
-  return <div>
-    hi there
-  </div>
+export default function Page(): JSX.Element {
+  const session = useSession();
+  return (
+   <div>
+      <Appbar onSignin={signIn} onSignout={signOut} user={session.data?.user} />
+   </div>
+  );
 }
